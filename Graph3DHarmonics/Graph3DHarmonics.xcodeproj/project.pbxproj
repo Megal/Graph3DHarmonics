@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		24E22B0517B4E4B500862BCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0417B4E4B500862BCD /* Foundation.framework */; };
+		24E22B0717B4E4B500862BCD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0617B4E4B500862BCD /* CoreGraphics.framework */; };
+		24E22B0917B4E4B500862BCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0817B4E4B500862BCD /* UIKit.framework */; };
+		24E22B0F17B4E4B500862BCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24E22B0D17B4E4B500862BCD /* InfoPlist.strings */; };
+		24E22B1117B4E4B500862BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E22B1017B4E4B500862BCD /* main.m */; };
+		24E22B1517B4E4B500862BCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E22B1417B4E4B500862BCD /* AppDelegate.m */; };
+		24E22B1717B4E4B500862BCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24E22B1617B4E4B500862BCD /* Images.xcassets */; };
+		24E22B1E17B4E4B600862BCD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B1D17B4E4B600862BCD /* XCTest.framework */; };
+		24E22B1F17B4E4B600862BCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0417B4E4B500862BCD /* Foundation.framework */; };
+		24E22B2017B4E4B600862BCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0817B4E4B500862BCD /* UIKit.framework */; };
+		24E22B2817B4E4B600862BCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24E22B2617B4E4B600862BCD /* InfoPlist.strings */; };
+		24E22B2A17B4E4B600862BCD /* Graph3DHarmonicsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E22B2917B4E4B600862BCD /* Graph3DHarmonicsTests.m */; };
+		24E22B3417B4E50900862BCD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B3317B4E50900862BCD /* QuartzCore.framework */; };
+		24E22B3817B4E57400862BCD /* BeginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E22B3617B4E57400862BCD /* BeginViewController.m */; };
+		24E22B3917B4E57400862BCD /* BeginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E22B3717B4E57400862BCD /* BeginViewController.xib */; };
+		24E22B3D17B4E6D100862BCD /* Graph3DViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E22B3A17B4E6D100862BCD /* Graph3DViewController.m */; };
+		24E22B3E17B4E6D100862BCD /* Graph3DViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E22B3C17B4E6D100862BCD /* Graph3DViewController.xib */; };
+		24E22B4217B4E7AC00862BCD /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E22B4117B4E7AC00862BCD /* EAGLView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24E22B2117B4E4B600862BCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24E22AF917B4E4B500862BCD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24E22B0017B4E4B500862BCD;
+			remoteInfo = Graph3DHarmonics;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		24E22B0117B4E4B500862BCD /* Graph3DHarmonics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graph3DHarmonics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24E22B0417B4E4B500862BCD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		24E22B0617B4E4B500862BCD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		24E22B0817B4E4B500862BCD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		24E22B0C17B4E4B500862BCD /* Graph3DHarmonics-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Graph3DHarmonics-Info.plist"; sourceTree = "<group>"; };
+		24E22B0E17B4E4B500862BCD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		24E22B1017B4E4B500862BCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		24E22B1217B4E4B500862BCD /* Graph3DHarmonics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Graph3DHarmonics-Prefix.pch"; sourceTree = "<group>"; };
+		24E22B1317B4E4B500862BCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Graph3DHarmonics/AppDelegate.h; sourceTree = "<group>"; };
+		24E22B1417B4E4B500862BCD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Graph3DHarmonics/AppDelegate.m; sourceTree = "<group>"; };
+		24E22B1617B4E4B500862BCD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Graph3DHarmonics/Images.xcassets; sourceTree = "<group>"; };
+		24E22B1C17B4E4B600862BCD /* Graph3DHarmonicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Graph3DHarmonicsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		24E22B1D17B4E4B600862BCD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		24E22B2517B4E4B600862BCD /* Graph3DHarmonicsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Graph3DHarmonicsTests-Info.plist"; sourceTree = "<group>"; };
+		24E22B2717B4E4B600862BCD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		24E22B2917B4E4B600862BCD /* Graph3DHarmonicsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Graph3DHarmonicsTests.m; sourceTree = "<group>"; };
+		24E22B3317B4E50900862BCD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		24E22B3517B4E57400862BCD /* BeginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeginViewController.h; path = Graph3DHarmonics/BeginViewController.h; sourceTree = "<group>"; };
+		24E22B3617B4E57400862BCD /* BeginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeginViewController.m; path = Graph3DHarmonics/BeginViewController.m; sourceTree = "<group>"; };
+		24E22B3717B4E57400862BCD /* BeginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BeginViewController.xib; path = Graph3DHarmonics/BeginViewController.xib; sourceTree = "<group>"; };
+		24E22B3A17B4E6D100862BCD /* Graph3DViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Graph3DViewController.m; path = Graph3DHarmonics/Graph3DViewController.m; sourceTree = "<group>"; };
+		24E22B3B17B4E6D100862BCD /* Graph3DViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graph3DViewController.h; path = Graph3DHarmonics/Graph3DViewController.h; sourceTree = "<group>"; };
+		24E22B3C17B4E6D100862BCD /* Graph3DViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Graph3DViewController.xib; path = Graph3DHarmonics/Graph3DViewController.xib; sourceTree = "<group>"; };
+		24E22B4017B4E7AC00862BCD /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		24E22B4117B4E7AC00862BCD /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		24E22AFE17B4E4B500862BCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24E22B3417B4E50900862BCD /* QuartzCore.framework in Frameworks */,
+				24E22B0717B4E4B500862BCD /* CoreGraphics.framework in Frameworks */,
+				24E22B0917B4E4B500862BCD /* UIKit.framework in Frameworks */,
+				24E22B0517B4E4B500862BCD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24E22B1917B4E4B600862BCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24E22B1E17B4E4B600862BCD /* XCTest.framework in Frameworks */,
+				24E22B2017B4E4B600862BCD /* UIKit.framework in Frameworks */,
+				24E22B1F17B4E4B600862BCD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24E22AF817B4E4B500862BCD = {
+			isa = PBXGroup;
+			children = (
+				24E22B3517B4E57400862BCD /* BeginViewController.h */,
+				24E22B3617B4E57400862BCD /* BeginViewController.m */,
+				24E22B3717B4E57400862BCD /* BeginViewController.xib */,
+				24E22B3A17B4E6D100862BCD /* Graph3DViewController.m */,
+				24E22B3B17B4E6D100862BCD /* Graph3DViewController.h */,
+				24E22B3C17B4E6D100862BCD /* Graph3DViewController.xib */,
+				24E22B3F17B4E7AC00862BCD /* OpenGL */,
+				24E22B1317B4E4B500862BCD /* AppDelegate.h */,
+				24E22B1417B4E4B500862BCD /* AppDelegate.m */,
+				24E22B1617B4E4B500862BCD /* Images.xcassets */,
+				24E22B0B17B4E4B500862BCD /* Supporting Files */,
+				24E22B2317B4E4B600862BCD /* Graph3DHarmonicsTests */,
+				24E22B0317B4E4B500862BCD /* Frameworks */,
+				24E22B0217B4E4B500862BCD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		24E22B0217B4E4B500862BCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24E22B0117B4E4B500862BCD /* Graph3DHarmonics.app */,
+				24E22B1C17B4E4B600862BCD /* Graph3DHarmonicsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24E22B0317B4E4B500862BCD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24E22B3317B4E50900862BCD /* QuartzCore.framework */,
+				24E22B0417B4E4B500862BCD /* Foundation.framework */,
+				24E22B0617B4E4B500862BCD /* CoreGraphics.framework */,
+				24E22B0817B4E4B500862BCD /* UIKit.framework */,
+				24E22B1D17B4E4B600862BCD /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24E22B0B17B4E4B500862BCD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				24E22B0C17B4E4B500862BCD /* Graph3DHarmonics-Info.plist */,
+				24E22B0D17B4E4B500862BCD /* InfoPlist.strings */,
+				24E22B1017B4E4B500862BCD /* main.m */,
+				24E22B1217B4E4B500862BCD /* Graph3DHarmonics-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = Graph3DHarmonics;
+			sourceTree = "<group>";
+		};
+		24E22B2317B4E4B600862BCD /* Graph3DHarmonicsTests */ = {
+			isa = PBXGroup;
+			children = (
+				24E22B2917B4E4B600862BCD /* Graph3DHarmonicsTests.m */,
+				24E22B2417B4E4B600862BCD /* Supporting Files */,
+			);
+			path = Graph3DHarmonicsTests;
+			sourceTree = "<group>";
+		};
+		24E22B2417B4E4B600862BCD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				24E22B2517B4E4B600862BCD /* Graph3DHarmonicsTests-Info.plist */,
+				24E22B2617B4E4B600862BCD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		24E22B3F17B4E7AC00862BCD /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				24E22B4017B4E7AC00862BCD /* EAGLView.h */,
+				24E22B4117B4E7AC00862BCD /* EAGLView.m */,
+			);
+			name = OpenGL;
+			path = Graph3DHarmonics/OpenGL;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24E22B0017B4E4B500862BCD /* Graph3DHarmonics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24E22B2D17B4E4B600862BCD /* Build configuration list for PBXNativeTarget "Graph3DHarmonics" */;
+			buildPhases = (
+				24E22AFD17B4E4B500862BCD /* Sources */,
+				24E22AFE17B4E4B500862BCD /* Frameworks */,
+				24E22AFF17B4E4B500862BCD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Graph3DHarmonics;
+			productName = Graph3DHarmonics;
+			productReference = 24E22B0117B4E4B500862BCD /* Graph3DHarmonics.app */;
+			productType = "com.apple.product-type.application";
+		};
+		24E22B1B17B4E4B600862BCD /* Graph3DHarmonicsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24E22B3017B4E4B600862BCD /* Build configuration list for PBXNativeTarget "Graph3DHarmonicsTests" */;
+			buildPhases = (
+				24E22B1817B4E4B600862BCD /* Sources */,
+				24E22B1917B4E4B600862BCD /* Frameworks */,
+				24E22B1A17B4E4B600862BCD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24E22B2217B4E4B600862BCD /* PBXTargetDependency */,
+			);
+			name = Graph3DHarmonicsTests;
+			productName = Graph3DHarmonicsTests;
+			productReference = 24E22B1C17B4E4B600862BCD /* Graph3DHarmonicsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		24E22AF917B4E4B500862BCD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Lodoss Team Ltd.";
+				TargetAttributes = {
+					24E22B0017B4E4B500862BCD = {
+						DevelopmentTeam = 8228P2XPGP;
+					};
+					24E22B1B17B4E4B600862BCD = {
+						TestTargetID = 24E22B0017B4E4B500862BCD;
+					};
+				};
+			};
+			buildConfigurationList = 24E22AFC17B4E4B500862BCD /* Build configuration list for PBXProject "Graph3DHarmonics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 24E22AF817B4E4B500862BCD;
+			productRefGroup = 24E22B0217B4E4B500862BCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				24E22B0017B4E4B500862BCD /* Graph3DHarmonics */,
+				24E22B1B17B4E4B600862BCD /* Graph3DHarmonicsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		24E22AFF17B4E4B500862BCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24E22B0F17B4E4B500862BCD /* InfoPlist.strings in Resources */,
+				24E22B3917B4E57400862BCD /* BeginViewController.xib in Resources */,
+				24E22B3E17B4E6D100862BCD /* Graph3DViewController.xib in Resources */,
+				24E22B1717B4E4B500862BCD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24E22B1A17B4E4B600862BCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24E22B2817B4E4B600862BCD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		24E22AFD17B4E4B500862BCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24E22B1517B4E4B500862BCD /* AppDelegate.m in Sources */,
+				24E22B3817B4E57400862BCD /* BeginViewController.m in Sources */,
+				24E22B3D17B4E6D100862BCD /* Graph3DViewController.m in Sources */,
+				24E22B4217B4E7AC00862BCD /* EAGLView.m in Sources */,
+				24E22B1117B4E4B500862BCD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24E22B1817B4E4B600862BCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24E22B2A17B4E4B600862BCD /* Graph3DHarmonicsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		24E22B2217B4E4B600862BCD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24E22B0017B4E4B500862BCD /* Graph3DHarmonics */;
+			targetProxy = 24E22B2117B4E4B600862BCD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		24E22B0D17B4E4B500862BCD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24E22B0E17B4E4B500862BCD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		24E22B2617B4E4B600862BCD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24E22B2717B4E4B600862BCD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		24E22B2B17B4E4B600862BCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		24E22B2C17B4E4B600862BCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		24E22B2E17B4E4B600862BCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Graph3DHarmonics/Graph3DHarmonics-Prefix.pch";
+				INFOPLIST_FILE = "Graph3DHarmonics/Graph3DHarmonics-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		24E22B2F17B4E4B600862BCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Graph3DHarmonics/Graph3DHarmonics-Prefix.pch";
+				INFOPLIST_FILE = "Graph3DHarmonics/Graph3DHarmonics-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		24E22B3117B4E4B600862BCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Graph3DHarmonics.app/Graph3DHarmonics";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Graph3DHarmonics/Graph3DHarmonics-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Graph3DHarmonicsTests/Graph3DHarmonicsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		24E22B3217B4E4B600862BCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Graph3DHarmonics.app/Graph3DHarmonics";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Graph3DHarmonics/Graph3DHarmonics-Prefix.pch";
+				INFOPLIST_FILE = "Graph3DHarmonicsTests/Graph3DHarmonicsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		24E22AFC17B4E4B500862BCD /* Build configuration list for PBXProject "Graph3DHarmonics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24E22B2B17B4E4B600862BCD /* Debug */,
+				24E22B2C17B4E4B600862BCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24E22B2D17B4E4B600862BCD /* Build configuration list for PBXNativeTarget "Graph3DHarmonics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24E22B2E17B4E4B600862BCD /* Debug */,
+				24E22B2F17B4E4B600862BCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		24E22B3017B4E4B600862BCD /* Build configuration list for PBXNativeTarget "Graph3DHarmonicsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24E22B3117B4E4B600862BCD /* Debug */,
+				24E22B3217B4E4B600862BCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 24E22AF917B4E4B500862BCD /* Project object */;
+}
