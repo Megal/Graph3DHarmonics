@@ -9,11 +9,15 @@
 #import "Graph3DViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocity=0.01f;
+
 @interface Graph3DViewController ()
 {
 	GLfloat	*_arrayVetrex;
 	GLfloat	*_arrayColor;
 	size_t	_countVertex;
+	
+	GLfloat _xAngle, _yAngle, _zAngle;
 }
 
 @end
@@ -65,31 +69,76 @@
 
 - (void) commonInit
 {
+//	static GLfloat coords[] =
+//	{
+//		-1.0f, 0.0f, -0.5f,
+//		-1.0f, -1.0f, -10.5f,
+//		0.0f, -1.0f, -20.5f,
+//		0.0f, 0.0f, -30.5f,
+//		-1.0f, 0.0f, -40.5f,
+//		1.0f, 1.0f, -50.5f,
+//		0.0f, 1.0f, -60.5f,
+//		0.0f, 0.0f, -70.5f,
+//		10.0f, 0.0f, -80.5f,
+//		10.0f, 10.0f, -90.5f,
+//		0.0f, 10.0f, -90.5f,
+//		0.0f, 0.0f, -80.5f,
+//		-50.0f, -50.0f, -80.5f,
+//		50.0f, 0.0f, -70.5f,
+//		50.0f, 50.0f, -60.5f,
+//		0.0f, 50.0f, -50.5f,
+//		0.0f, 0.0f, -40.5f,
+//		0.5f, 0.0f, -30.5f,
+//		0.5f, 0.5f, -20.5f,
+//		0.0f, 0.5f, -10.5f,
+//	};
+//	static GLfloat coords[] =
+//	{
+//		-1.0f, 0.0f, -0.1f,
+//		-1.0f, -1.0f, -0.15f,
+//		0.0f, -1.0f, -0.2f,
+//		0.0f, 0.0f, -0.25f,
+//		-1.0f, 0.0f, -0.3f,
+//		1.0f, 1.0f, -0.35f,
+//		0.0f, 1.0f, -0.40f,
+//		0.0f, 0.0f, -0.45f,
+//		10.0f, 0.0f, -0.5f,
+//		10.0f, 10.0f, -0.45f,
+//		0.0f, 10.0f, -0.4f,
+//		0.0f, 0.0f, -0.35f,
+//		-50.0f, -50.0f, -0.3f,
+//		50.0f, 0.0f, -0.25f,
+//		50.0f, 50.0f, -0.2f,
+//		0.0f, 50.0f, -0.15f,
+//		0.0f, 0.0f, -0.1f,
+//		0.5f, 0.0f, -0.1f,
+//		0.5f, 0.5f, -0.1f,
+//		0.0f, 0.5f, -0.1f,
+//	};
 	static GLfloat coords[] =
 	{
-		-1.0f, 0.0f,
-		-1.0f, -1.0f,
-		0.0f, -1.0f,
-		0.0f, 0.0f,
-		-1.0f, 0.0f,
-		1.0f, 1.0f,
-		0.0f, 1.0f,
-		0.0f, 0.0f,
-		10.0f, 0.0f,
-		10.0f, 10.0f,
-		0.0f, 10.0f,
-		0.0f, 0.0f,
-		-50.0f, -50.0f,
-		50.0f, 0.0f,
-		50.0f, 50.0f,
-		0.0f, 50.0f,
-		0.0f, 0.0f,
-		0.5f, 0.0f,
-		0.5f, 0.5f,
-		0.0f, 0.5f,
+		-1.0f, 0.0f, 0,
+		-1.0f, -1.0f, 0,
+		0.0f, -1.0f, 0,
+		0.0f, 0.0f, 0,
+		-1.0f, 0.0f, 0,
+		1.0f, 1.0f, 0,
+		0.0f, 1.0f, 0,
+		0.0f, 0.0f, 0,
+		10.0f, 0.0f, 0,
+		10.0f, 10.0f, 0,
+		0.0f, 10.0f, 0,
+		0.0f, 0.0f, 0,
+		-50.0f, -50.0f, 0,
+		50.0f, 0.0f, 0,
+		50.0f, 50.0f, 0,
+		0.0f, 50.0f, 0,
+		0.0f, 0.0f, 0,
+		0.5f, 0.0f, 0,
+		0.5f, 0.5f, 0,
+		0.0f, 0.5f, 0,
 	};
-	
-	_countVertex = sizeof(coords)/sizeof(coords[0])/2;
+	_countVertex = sizeof(coords)/sizeof(coords[0])/3;
 	
 	_arrayVetrex = malloc(sizeof(coords));
 	memcpy(_arrayVetrex, coords, sizeof(coords));
@@ -169,9 +218,13 @@
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	
 	// Applies subsequent matrix operations to the modelview matrix stack.
-	glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
+	glOrthof(-2.0f, 2.0f, -2.0f, 2.0f, -10.0f, 10.0f);
+	[self probeGLError];
+	
+	[self rotateMatrix];
 	
 	// Disable Textures
 	glDisable(GL_TEXTURE_2D);
@@ -185,7 +238,7 @@
 	
 	// Enable vertex array, and set it
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(2, GL_FLOAT, 0, _arrayVetrex);
+	glVertexPointer(3, GL_FLOAT, 0, _arrayVetrex);
 	[self probeGLError];
 	
 	// Enable color array and set it
@@ -200,6 +253,18 @@
 	// DEBUG errors.
 	
 	[self.view presentFramebuffer];
+}
+
+
+- (void) rotateMatrix
+{
+	_xAngle += _xAngularVelocity;
+	_yAngle += _yAngularVelocity;
+	_zAngle += _zAngularVelocity;
+	
+	glRotatef(_xAngle, 1, 0, 0);
+	glRotatef(_yAngle, 0, 1, 0);
+	glRotatef(_zAngle, 0, 0, 1);
 }
 
 
