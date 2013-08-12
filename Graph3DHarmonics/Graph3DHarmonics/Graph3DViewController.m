@@ -7,6 +7,7 @@
 //
 
 #import "Graph3DViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface Graph3DViewController ()
 {
@@ -121,14 +122,33 @@
 		return ;
 	}
 	
+	// Setup context : openGL ES 1.1
 	[self.view setContext:context];
+	// Enable transparency
+	[self.view setOpaque:NO];
+	// Prepare for drawing, without conflics with other openGL surfaces
 	[self.view setFramebuffer];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+	self.isSurfacePrepared = NO;
+	[super viewDidDisappear:animated];
+}
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	self.isSurfacePrepared = NO;
+	[super viewDidAppear:animated];
 }
 
 
@@ -139,6 +159,11 @@
 {
 	[self.view setFramebuffer];
 	
+	if( !self.isSurfacePrepared )
+	{
+		[self prepareSurface];
+	}
+	
 	// clear everything
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -147,15 +172,12 @@
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	// Enable transparency
-	glEnable(GL_BLEND);
 	
 	// Disable Textures
 	glDisable(GL_TEXTURE_2D);
 	
 	// SetColor
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	
 
 	static GLbyte indices[5] =
 	{
@@ -202,19 +224,23 @@
 	
 	// test for depth
 	glEnable(GL_DEPTH_TEST);
+	[self probeGLError];
 	
 	// depth function for depth
 	glDepthFunc(GL_LEQUAL);
-	
-	glEnableClientState(GL_VERTEX_ARRAY);
+	[self probeGLError];
 
 	// ??
 	glDisable(GL_DITHER);
+	[self probeGLError];
 	
 	// set line parameters. super-smooth lines.
 	glEnable(GL_LINE_SMOOTH);
-	glHint( GL_LINE_SMOOTH, GL_NICEST );
-	
+	[self probeGLError];
+	glHint( GL_LINE_SMOOTH_HINT, GL_NICEST );
+	[self probeGLError];
+
+	self.isSurfacePrepared = YES;
 }
 
 #pragma mark - Animation control methods
@@ -235,6 +261,7 @@
 	[self.displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	
 	self.displayLink = nil;
+	self.isSurfacePrepared = NO;
 }
 
 

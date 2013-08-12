@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet EAGLView 	*view;
 @property (weak, nonatomic) CADisplayLink			*displayLink;
+@property (atomic, assign) BOOL						isSurfacePrepared;
 
 #pragma mark - Animation control methods
 - (void) startAnimation;
