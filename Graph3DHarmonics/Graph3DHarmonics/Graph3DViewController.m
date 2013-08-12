@@ -229,9 +229,6 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	// Disable Textures
 	glDisable(GL_TEXTURE_2D);
 	
-	// SetColor
-//	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	
 	// set line width
 	glLineWidth(2.0f);
 	[self probeGLError];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24D71BF917B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D71BF817B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m */; };
+		24D71BFA17B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D71BF817B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m */; };
 		24E22B0517B4E4B500862BCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0417B4E4B500862BCD /* Foundation.framework */; };
 		24E22B0717B4E4B500862BCD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0617B4E4B500862BCD /* CoreGraphics.framework */; };
 		24E22B0917B4E4B500862BCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E22B0817B4E4B500862BCD /* UIKit.framework */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24D71BF717B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graph3DHarmonicsDrawPreset.h; path = Graph3DHarmonics/Graph3DHarmonicsDrawPreset.h; sourceTree = "<group>"; };
+		24D71BF817B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Graph3DHarmonicsDrawPreset.m; path = Graph3DHarmonics/Graph3DHarmonicsDrawPreset.m; sourceTree = "<group>"; };
 		24E22B0117B4E4B500862BCD /* Graph3DHarmonics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graph3DHarmonics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E22B0417B4E4B500862BCD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24E22B0617B4E4B500862BCD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,6 +102,8 @@
 				24E22B3717B4E57400862BCD /* BeginViewController.xib */,
 				24E22B3A17B4E6D100862BCD /* Graph3DViewController.m */,
 				24E22B3B17B4E6D100862BCD /* Graph3DViewController.h */,
+				24D71BF717B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.h */,
+				24D71BF817B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m */,
 				24E22B3C17B4E6D100862BCD /* Graph3DViewController.xib */,
 				24E22B3F17B4E7AC00862BCD /* OpenGL */,
 				24E22B1317B4E4B500862BCD /* AppDelegate.h */,
@@ -274,6 +280,7 @@
 				24E22B1517B4E4B500862BCD /* AppDelegate.m in Sources */,
 				24E22B3817B4E57400862BCD /* BeginViewController.m in Sources */,
 				24E22B3D17B4E6D100862BCD /* Graph3DViewController.m in Sources */,
+				24D71BF917B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m in Sources */,
 				24E22B4217B4E7AC00862BCD /* EAGLView.m in Sources */,
 				24E22B1117B4E4B500862BCD /* main.m in Sources */,
 			);
@@ -284,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24E22B2A17B4E4B600862BCD /* Graph3DHarmonicsTests.m in Sources */,
+				24D71BFA17B8F65E00C192F2 /* Graph3DHarmonicsDrawPreset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +484,7 @@
 				24E22B2F17B4E4B600862BCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		24E22B3017B4E4B600862BCD /* Build configuration list for PBXNativeTarget "Graph3DHarmonicsTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +493,7 @@
 				24E22B3217B4E4B600862BCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
