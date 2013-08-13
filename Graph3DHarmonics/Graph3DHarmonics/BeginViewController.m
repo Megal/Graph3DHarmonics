@@ -36,16 +36,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (IBAction)startAnimation:(id)sender
-{
-	[self.graphVC startAnimation];
-}
-
-
-- (IBAction)stopAnimation:(id)sender
-{
-	[self.graphVC stopAnimation];
-}
-
 @end

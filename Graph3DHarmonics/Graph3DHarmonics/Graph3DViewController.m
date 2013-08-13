@@ -141,7 +141,7 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	glDisable(GL_TEXTURE_2D);
 	
 	// set line width
-	glLineWidth(2.0f);
+	glLineWidth(1.1f);
 	[self probeGLError];
 	
 	// Enable vertex array, and set it
@@ -219,7 +219,7 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 
 #pragma mark - Animation control methods
 
-- (void) startAnimation
+- (IBAction) startAnimation:(id)sender
 {
 	if( self.displayLink ) return;
 	
@@ -230,7 +230,7 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	self.displayLink = displayLink;
 }
 
-- (void) stopAnimation
+- (IBAction) stopAnimation:(id)sender
 {
 	[self.displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[self cleanup];
@@ -241,6 +241,12 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	[self.view setNeedsDisplay];
 }
 
+
+- (IBAction) nextPreset:(id)sender
+{
+	static int currentPreset = 0;
+	[self.graph3D setPreset:++currentPreset];
+}
 
 #pragma mark - 
 

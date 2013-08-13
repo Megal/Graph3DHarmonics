@@ -18,8 +18,8 @@
 @property (strong, nonatomic) Graph3DHarmonicsDrawPreset	*graph3D;
 
 #pragma mark - Animation control methods
-- (void) startAnimation;
-- (void) stopAnimation;
-
+- (IBAction) startAnimation:(id)sender;
+- (IBAction) stopAnimation:(id)sender;
+- (IBAction) nextPreset:(id)sender;
 
 @end

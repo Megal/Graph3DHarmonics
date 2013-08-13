@@ -84,7 +84,7 @@ const GLfloat presets[][6]=
 
 - (void) setPreset:(NSUInteger)preset
 {
-	_preset = preset % _countVertex;
+	_preset = preset % 12; // presets count
 	[self calcCoords];
 }
 
@@ -137,7 +137,10 @@ const GLfloat presets[][6]=
 		default:	prop=1; break;
 	}
 	
-	UIColor *interpolatedColor = [self interpolatedFromColor:[[UIColor redColor] copy] toColor:[[UIColor blueColor] copy] ratio:prop];
+	UIColor *fromColor = [UIColor colorWithHue:1.0 saturation:1.0 brightness:1.0 alpha:1.0];
+	UIColor *toColor = [UIColor colorWithHue:0.66667 saturation:1.0 brightness:1.0 alpha:0.6667];
+	
+	UIColor *interpolatedColor = [self interpolatedFromColor:fromColor toColor:toColor ratio:prop];
 	[interpolatedColor getRed:&r green:&g blue:&b alpha:&a];
 	// colorIndex.. skip implementation - interpolated color between RED and BLUE.. hsv-interpolated
 }
@@ -155,9 +158,9 @@ const GLfloat presets[][6]=
 	[toColor getHue:&hEnd saturation:&sEnd brightness:&vEnd alpha:&aEnd];
 	
 	// iterpalate in proportion ratio, on longest Hue path
-	hInterpolated = ( fabsf(hStart - hEnd) < 0.5f )
+	hInterpolated = ( fabsf(hStart - hEnd) > 0.5f )
 			?(ratio*hStart + antiratio*hEnd)
-			:(1+ratio*hStart + antiratio*hEnd);
+			:(ratio*hStart + antiratio*(1+hEnd));
 	hInterpolated = fmodf(hInterpolated, 1.0f);
 	
 	sInterpolated = (ratio*sStart + antiratio*sEnd);
