@@ -13,10 +13,6 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 
 @interface Graph3DViewController ()
 {
-	GLfloat	*_arrayVetrex;
-	GLfloat	*_arrayColor;
-	size_t	_countVertex;
-	
 	GLfloat _xAngle, _yAngle, _zAngle;
 }
 
@@ -33,8 +29,6 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	{
 		[EAGLContext setCurrentContext:nil];
 	}
-	free(_arrayVetrex);
-	free(_arrayColor);
 }
 
 - (void)viewDidUnload
@@ -67,93 +61,10 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	return self;
 }
 
+
 - (void) commonInit
 {
-//	static GLfloat coords[] =
-//	{
-//		-1.0f, 0.0f, -0.5f,
-//		-1.0f, -1.0f, -10.5f,
-//		0.0f, -1.0f, -20.5f,
-//		0.0f, 0.0f, -30.5f,
-//		-1.0f, 0.0f, -40.5f,
-//		1.0f, 1.0f, -50.5f,
-//		0.0f, 1.0f, -60.5f,
-//		0.0f, 0.0f, -70.5f,
-//		10.0f, 0.0f, -80.5f,
-//		10.0f, 10.0f, -90.5f,
-//		0.0f, 10.0f, -90.5f,
-//		0.0f, 0.0f, -80.5f,
-//		-50.0f, -50.0f, -80.5f,
-//		50.0f, 0.0f, -70.5f,
-//		50.0f, 50.0f, -60.5f,
-//		0.0f, 50.0f, -50.5f,
-//		0.0f, 0.0f, -40.5f,
-//		0.5f, 0.0f, -30.5f,
-//		0.5f, 0.5f, -20.5f,
-//		0.0f, 0.5f, -10.5f,
-//	};
-//	static GLfloat coords[] =
-//	{
-//		-1.0f, 0.0f, -0.1f,
-//		-1.0f, -1.0f, -0.15f,
-//		0.0f, -1.0f, -0.2f,
-//		0.0f, 0.0f, -0.25f,
-//		-1.0f, 0.0f, -0.3f,
-//		1.0f, 1.0f, -0.35f,
-//		0.0f, 1.0f, -0.40f,
-//		0.0f, 0.0f, -0.45f,
-//		10.0f, 0.0f, -0.5f,
-//		10.0f, 10.0f, -0.45f,
-//		0.0f, 10.0f, -0.4f,
-//		0.0f, 0.0f, -0.35f,
-//		-50.0f, -50.0f, -0.3f,
-//		50.0f, 0.0f, -0.25f,
-//		50.0f, 50.0f, -0.2f,
-//		0.0f, 50.0f, -0.15f,
-//		0.0f, 0.0f, -0.1f,
-//		0.5f, 0.0f, -0.1f,
-//		0.5f, 0.5f, -0.1f,
-//		0.0f, 0.5f, -0.1f,
-//	};
-	static GLfloat coords[] =
-	{
-		-1.0f, 0.0f, 0,
-		-1.0f, -1.0f, 0,
-		0.0f, -1.0f, 0,
-		0.0f, 0.0f, 0,
-		-1.0f, 0.0f, 0,
-		1.0f, 1.0f, 0,
-		0.0f, 1.0f, 0,
-		0.0f, 0.0f, 0,
-		10.0f, 0.0f, 0,
-		10.0f, 10.0f, 0,
-		0.0f, 10.0f, 0,
-		0.0f, 0.0f, 0,
-		-50.0f, -50.0f, 0,
-		50.0f, 0.0f, 0,
-		50.0f, 50.0f, 0,
-		0.0f, 50.0f, 0,
-		0.0f, 0.0f, 0,
-		0.5f, 0.0f, 0,
-		0.5f, 0.5f, 0,
-		0.0f, 0.5f, 0,
-	};
-	_countVertex = sizeof(coords)/sizeof(coords[0])/3;
-	
-	_arrayVetrex = malloc(sizeof(coords));
-	memcpy(_arrayVetrex, coords, sizeof(coords));
-		   
-	// RGB with float range;
-	_arrayColor = malloc( _countVertex * 4 * sizeof(GLfloat) );
-	for( int i=0; i<_countVertex; ++i )
-	{
-		int index = i*4;
-		_arrayColor[index] = 1.0; // R = 1.0
-		_arrayColor[index+1] = 1.0f * (i / (float)_countVertex); // G
-		_arrayColor[index+2] = 1.0f - 1.0f * (i / (float)_countVertex); // B
-		_arrayColor[index+3] = 1.0f; // A
-	}
-	; // nop
+	_graph3D = [[Graph3DHarmonicsDrawPreset alloc] init];
 }
 
 
@@ -235,19 +146,11 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	
 	// Enable vertex array, and set it
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, _arrayVetrex);
-	[self probeGLError];
-	
 	// Enable color array and set it
 	glEnableClientState(GL_COLOR_ARRAY);
-	glColorPointer(4, GL_FLOAT, 0, _arrayColor);
-	[self probeGLError];
 
-	// Draw lines! Actial drawing is here
-	glDrawArrays(GL_LINE_STRIP, 0, _countVertex);
+	[self.graph3D draw];
 	[self probeGLError];
-	
-	// DEBUG errors.
 	
 	[self.view presentFramebuffer];
 }

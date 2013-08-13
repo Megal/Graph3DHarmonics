@@ -85,11 +85,6 @@ const GLfloat presets[][6]=
 - (void) setPreset:(NSUInteger)preset
 {
 	_preset = preset % _countVertex;
-}
-
-
-- (void) updateParams
-{
 	[self calcCoords];
 }
 
@@ -101,8 +96,8 @@ const GLfloat presets[][6]=
 
 	free(_arrayVetrex);
 	free(_arrayColor);
-	_arrayVetrex = calloc( _countVertex*3*sizeof(GLfloat), 0); // xyz * size of float
-	_arrayColor = calloc( _countVertex*4*sizeof(GLfloat), 0); // RGBA * size of float
+	_arrayVetrex = malloc( _countVertex*3*sizeof(GLfloat)); // xyz * size of float
+	_arrayColor = malloc( _countVertex*4*sizeof(GLfloat)); // RGBA * size of float
 	for( int i=0; i<_countVertex; ++i )
 	{
 		int indexV = i*3;
@@ -119,6 +114,7 @@ const GLfloat presets[][6]=
 		_arrayColor[indexC+3]	= a;
 	}
 }
+
 
 // calc position for next point
 - (void) calcSegment:(NSUInteger) index
@@ -141,14 +137,40 @@ const GLfloat presets[][6]=
 		default:	prop=1; break;
 	}
 	
+	UIColor *interpolatedColor = [self interpolatedFromColor:[[UIColor redColor] copy] toColor:[[UIColor blueColor] copy] ratio:prop];
+	[interpolatedColor getRed:&r green:&g blue:&b alpha:&a];
 	// colorIndex.. skip implementation - interpolated color between RED and BLUE.. hsv-interpolated
 }
 
-- (NSUInteger) interpolatedFromHSVA:(NSUInteger)fromHSVA toHSVA:(NSUInteger)toHSVA ratio:(float)ratio
-{
-	return 0; // TODO interpolation HSV
-}
 
+//! HSVA hue[0..1] -> [0.. 2pi], saturation = [0..1], value = [0..1]
+- (UIColor *) interpolatedFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor ratio:(float)ratio
+{
+	float antiratio = 1.0f - ratio;
+	CGFloat hStart, sStart, vStart, aStart,
+			hEnd, sEnd, vEnd, aEnd,
+			hInterpolated, sInterpolated, vInterpolated, aInterpolated;
+	
+	[fromColor getHue:&hStart saturation:&sStart brightness:&vStart alpha:&aStart];
+	[toColor getHue:&hEnd saturation:&sEnd brightness:&vEnd alpha:&aEnd];
+	
+	// iterpalate in proportion ratio, on longest Hue path
+	hInterpolated = ( fabsf(hStart - hEnd) < 0.5f )
+			?(ratio*hStart + antiratio*hEnd)
+			:(1+ratio*hStart + antiratio*hEnd);
+	hInterpolated = fmodf(hInterpolated, 1.0f);
+	
+	sInterpolated = (ratio*sStart + antiratio*sEnd);
+	vInterpolated = (ratio*vStart + antiratio*vEnd);
+	aInterpolated = (ratio*aStart + antiratio*aEnd);
+ 	
+	UIColor *interpolatedColor = [UIColor colorWithHue:hInterpolated
+											saturation:sInterpolated
+											brightness:vInterpolated
+												 alpha:aInterpolated];
+	
+	return interpolatedColor;
+}
 
 
 @end
