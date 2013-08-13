@@ -132,9 +132,13 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-	glOrthof(-2.0f, 2.0f, -2.0f, 2.0f, -10.0f, 10.0f);
+	glFrustumf(-2.0f, 2.0f, -2.0f, 2.0f, 15.0f, 25.0f);
+	glTranslatef(0, 0, -20.0f);
+//	glOrthof(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 10.0f);
 	[self probeGLError];
 	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	[self rotateMatrix];
 	
 	// Disable Textures
