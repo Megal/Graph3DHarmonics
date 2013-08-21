@@ -10,7 +10,11 @@
 
 #import "EAGLView.h"
 
-@interface EAGLView (PrivateMethods)
+@interface EAGLView (/*PrivateMethods*/)
+{
+	BOOL isRendering_PATCH_VARIABLE;
+}
+
 - (void)createFramebuffer;
 - (void)deleteFramebuffer;
 @end
@@ -84,42 +88,54 @@
 
 - (void)deleteFramebuffer
 {
-    if (context) {
-        [EAGLContext setCurrentContext:context];
-        
-        if (defaultFramebuffer) {
-            glDeleteFramebuffers(1, &defaultFramebuffer);
-            defaultFramebuffer = 0;
-        }
-        
-        if (colorRenderbuffer) {
-            glDeleteRenderbuffers(1, &colorRenderbuffer);
-            colorRenderbuffer = 0;
-        }
-    }
+	if( isRendering_PATCH_VARIABLE )
+	{
+		return;
+	}
+	else if ( context /* && !isRendering_PATCH_VARIABLE */ )
+	{
+		[EAGLContext setCurrentContext:context];
+		
+		if (defaultFramebuffer) {
+			glDeleteFramebuffers(1, &defaultFramebuffer);
+			defaultFramebuffer = 0;
+		}
+		
+		if (colorRenderbuffer) {
+			glDeleteRenderbuffers(1, &colorRenderbuffer);
+			colorRenderbuffer = 0;
+		}
+	}
 }
 
 - (void)setFramebuffer
 {
-    
-    
-    if (context) {
-        [EAGLContext setCurrentContext:context];
-        
-        if (!defaultFramebuffer)
-            [self createFramebuffer];
-        
-        glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebuffer);
-        
-        glViewport(0, 0, framebufferWidth, framebufferHeight);
-    }
+	if (context)
+	{
+		isRendering_PATCH_VARIABLE = YES;
+
+		[EAGLContext setCurrentContext:context];
+		
+		if (!defaultFramebuffer)
+		{
+			[self createFramebuffer];
+		}
+
+		[EAGLContext setCurrentContext:context];
+		glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
+		[context presentRenderbuffer:GL_RENDERBUFFER_OES];
+		glBindRenderbufferOES(GL_RENDERBUFFER_OES, 0);
+
+		isRendering_PATCH_VARIABLE = NO;
+	}
+
+	glViewport(0, 0, framebufferWidth, framebufferHeight);
 }
+
 
 - (BOOL)presentFramebuffer
 {
     BOOL success = FALSE;
-    
-//    BOOL isBackground = [AuraAppAppDelegate sharedDelegate].isInBackground;
     
     if ([context respondsToSelector:@selector(presentRenderbuffer:)]) {
         [EAGLContext setCurrentContext:context];
