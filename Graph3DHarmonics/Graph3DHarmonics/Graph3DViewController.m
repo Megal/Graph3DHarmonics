@@ -9,7 +9,7 @@
 #import "Graph3DViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocity=0.01f;
+const CGFloat _xAngularVelocity=0.18f, _yAngularVelocity=0.09f, _zAngularVelocity=0.03f;
 
 @interface Graph3DViewController ()
 {
@@ -24,6 +24,8 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 
 - (void) dealloc
 {
+	[self stopAnimation:self];
+
 	// Tear down the context
 	if( self.view.context == [EAGLContext currentContext] )
 	{
@@ -33,6 +35,8 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 
 - (void)viewDidUnload
 {
+	[self stopAnimation:self];
+	
 	[self setView:nil];
 	self.displayLink = nil;
 	[super viewDidUnload];
@@ -65,15 +69,16 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 - (void) commonInit
 {
 	_graph3D = [[Graph3DHarmonicsDrawPreset alloc] init];
+	_preset = 0;
 }
 
 
 
 #pragma mark - View Controller Lifecycle stuff
 
-- (void) awakeFromNib
+- (void) viewDidLoad
 {
-	[super awakeFromNib];
+	[super viewDidLoad];
 	
 	EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
 	if( !context )
@@ -93,15 +98,14 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 
 - (void)didReceiveMemoryWarning
 {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+	; // DO nothing.
 }
 
 
--(void)viewDidDisappear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
 	self.isSurfacePrepared = NO;
-	[super viewDidDisappear:animated];
+	[super viewWillAppear:animated];
 }
 
 
@@ -109,6 +113,21 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 {
 	self.isSurfacePrepared = NO;
 	[super viewDidAppear:animated];
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+	self.isSurfacePrepared = NO;
+	[self stopAnimation:self];
+	[super viewWillDisappear:animated];
+}
+
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+	self.isSurfacePrepared = NO;
+	[super viewDidDisappear:animated];
 }
 
 
@@ -132,13 +151,9 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-	glFrustumf(-2.0f, 2.0f, -2.0f, 2.0f, 15.0f, 25.0f);
-	glTranslatef(0, 0, -20.0f);
-//	glOrthof(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 10.0f);
+	glOrthof(-2.0f, 2.0f, -2.0f, 2.0f, -10.0f, 10.0f);
 	[self probeGLError];
 	
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 	[self rotateMatrix];
 	
 	// Disable Textures
@@ -221,11 +236,18 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 	self.isSurfacePrepared = YES;
 }
 
+- (void) setPreset:(NSUInteger)preset
+{
+	[self.graph3D setPreset:preset];
+	_preset = preset;
+}
+
+
 #pragma mark - Animation control methods
 
 - (IBAction) startAnimation:(id)sender
 {
-	if( self.displayLink ) return;
+	if( self.displayLink ) return; 
 	
 	CADisplayLink *displayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(drawFrame)];
 	[displayLink setFrameInterval:1];
@@ -236,8 +258,7 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 
 - (IBAction) stopAnimation:(id)sender
 {
-	[self.displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-	[self cleanup];
+	[self.displayLink invalidate];
 	
 	self.displayLink = nil;
 	self.isSurfacePrepared = NO;
@@ -248,8 +269,7 @@ const CGFloat _xAngularVelocity=0.06f, _yAngularVelocity=0.03f, _zAngularVelocit
 
 - (IBAction) nextPreset:(id)sender
 {
-	static int currentPreset = 0;
-	[self.graph3D setPreset:++currentPreset];
+	self.preset++;
 }
 
 #pragma mark - 

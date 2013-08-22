@@ -16,6 +16,7 @@
 @property (weak, nonatomic) CADisplayLink					*displayLink;
 @property (atomic, assign) BOOL								isSurfacePrepared;
 @property (strong, nonatomic) Graph3DHarmonicsDrawPreset	*graph3D;
+@property (nonatomic, assign) NSUInteger					preset;
 
 #pragma mark - Animation control methods
 - (IBAction) startAnimation:(id)sender;

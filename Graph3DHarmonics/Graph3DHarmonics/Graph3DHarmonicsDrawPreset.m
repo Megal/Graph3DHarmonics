@@ -13,6 +13,25 @@
 #import <OpenGLES/ES2/glext.h>
 
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+	
+float clampf(const float value, const float min, const float max )
+{
+	return ( value<min ) ? min : ( value>max ) ? max : value;
+}
+
+int clampi(const int value, const int min, const int max )
+{
+	return ( value<min ) ? min : ( value>max ) ? max : value;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
 // presets structure p1 p2 p3 f1 f2 colorMode
 const GLfloat presets[][6]=
 {
@@ -21,7 +40,7 @@ const GLfloat presets[][6]=
 	{1,2,0,.1f,.3f,2},				{6,3,2,.21f,.3f,0},			{1,2,-1,.1f,.3f,2},			{6,-3,2,.21f,.3f,0}
 };
 
-
+const size_t kInterpolationFractionCount = 16;
 
 @interface Graph3DHarmonicsDrawPreset ()
 {
@@ -137,12 +156,37 @@ const GLfloat presets[][6]=
 		default:	prop=1; break;
 	}
 	
-	UIColor *fromColor = [UIColor colorWithHue:1.0 saturation:1.0 brightness:1.0 alpha:1.0];
-	UIColor *toColor = [UIColor colorWithHue:0.66667 saturation:1.0 brightness:1.0 alpha:0.6667];
-	
-	UIColor *interpolatedColor = [self interpolatedFromColor:fromColor toColor:toColor ratio:prop];
-	[interpolatedColor getRed:&r green:&g blue:&b alpha:&a];
-	// colorIndex.. skip implementation - interpolated color between RED and BLUE.. hsv-interpolated
+	static UIColor *fromColor;
+	static UIColor *toColor;
+	static CGFloat rgbaInterpolated[kInterpolationFractionCount][4];
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^
+	{
+		// colorIndex.. skip implementation - interpolated color between RED and BLUE.. hsv-interpolated
+		fromColor = [UIColor colorWithHue:1.0 saturation:1.0 brightness:1.0 alpha:1.0];
+		toColor = [UIColor colorWithHue:0.66667 saturation:1.0 brightness:1.0 alpha:0.6667];
+		
+		// pre-calculate kInterpolationFractionCount interpolations
+		for( int ratioindex = 0; ratioindex<kInterpolationFractionCount; ++ratioindex )
+		@autoreleasepool
+		{
+			float ratio = 1.0f * (ratioindex / (float)(kInterpolationFractionCount-1));
+			UIColor *interpolatedColor = [self interpolatedFromColor:fromColor toColor:toColor ratio:ratio];
+			[interpolatedColor getRed:&r green:&g blue:&b alpha:&a];
+			rgbaInterpolated[ratioindex][0] = r;
+			rgbaInterpolated[ratioindex][1] = g;
+			rgbaInterpolated[ratioindex][2] = b;
+			rgbaInterpolated[ratioindex][3] = a;
+		}
+	});
+
+	// get color from interpolated table
+	int ratioindex = clampi( (int)floorf(prop*(kInterpolationFractionCount-1) + FLT_EPSILON), 0, kInterpolationFractionCount-1);
+	assert( ratioindex>=0 && ratioindex<kInterpolationFractionCount );
+	r = rgbaInterpolated[ratioindex][0];
+	g = rgbaInterpolated[ratioindex][1];
+	b = rgbaInterpolated[ratioindex][2];
+	a = rgbaInterpolated[ratioindex][3];
 }
 
 
