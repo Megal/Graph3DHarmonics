@@ -9,7 +9,7 @@
 #import "Graph3DViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-const CGFloat _xAngularVelocity=0.18f, _yAngularVelocity=0.09f, _zAngularVelocity=0.03f;
+const CGFloat _xAngularVelocity=0.181f, _yAngularVelocity=0.092f, _zAngularVelocity=0.033f;
 
 @interface Graph3DViewController ()
 {
@@ -151,11 +151,14 @@ const CGFloat _xAngularVelocity=0.18f, _yAngularVelocity=0.09f, _zAngularVelocit
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-	glOrthof(-2.0f, 2.0f, -2.0f, 2.0f, -10.0f, 10.0f);
+	glFrustumf(-1.8f, 1.8f, -1.8, 1.8f, 53.0, 57.0);
 	[self probeGLError];
 	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glTranslatef(0.0f, 0.0f, -55.0f);
 	[self rotateMatrix];
-	
+
 	// Disable Textures
 	glDisable(GL_TEXTURE_2D);
 	

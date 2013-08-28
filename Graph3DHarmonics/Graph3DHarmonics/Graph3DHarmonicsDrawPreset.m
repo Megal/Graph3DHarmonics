@@ -40,7 +40,7 @@ const GLfloat presets[][6]=
 	{1,2,0,.1f,.3f,2},				{6,3,2,.21f,.3f,0},			{1,2,-1,.1f,.3f,2},			{6,-3,2,.21f,.3f,0}
 };
 
-const size_t kInterpolationFractionCount = 16;
+const size_t kInterpolationFractionCount = 64;
 
 @interface Graph3DHarmonicsDrawPreset ()
 {
